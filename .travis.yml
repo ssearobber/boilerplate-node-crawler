@@ -1,0 +1,34 @@
+language: generic
+
+sudo: required
+
+services:
+  - docker
+
+# before_install:
+#   - docker build -t swoo0315/crawler-app -f ./frontend/Dockerfile.dev ./frontend
+
+# script:
+#   - docker run -e CI=true swoo0315/crawler-app npm run test
+
+after_success:
+  - docker build -t swoo0315/docker-backend ./backend
+  - docker build -t swoo0315/docker-nginx ./nginx
+
+  - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
+
+  - docker push swoo0315/docker-backend
+  - docker push swoo0315/docker-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'ap-northeast-2'
+  app: 'docker-fullstack-app'
+  env: 'DockerFullstackApp-env'
+  bucket_name: elasticbeanstalk-ap-northeast-2-972153559337
+  bucket_path: 'docker-fullstack-app'
+  on:
+    branch: master
+
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
