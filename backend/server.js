@@ -32,7 +32,6 @@ const j = schedule.scheduleJob('40 30 * * * *', function () {
   });
 });
 
-// 클라이언트에서 입력한 값을 데이터베이스 lists 테이블에 넣어주기
 app.post('/api/value', function (req, res, next) {
   console.log(`test : ${req.body.value}`);
   //데이터베이스에 값 넣어주기
