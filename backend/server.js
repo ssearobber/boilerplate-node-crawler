@@ -32,28 +32,6 @@ const j = schedule.scheduleJob('40 30 * * * *', function () {
   });
 });
 
-//DB lists 테이블에 있는 모든 데이터를 프론트 서베에 보내주기
-app.get('/api/hi', function (req, res) {
-  //데이테베이스에서 모든 정보 가져오기
-  res.status(200).send('good');
-});
-
-//DB lists 테이블에 있는 모든 데이터를 프론트 서베에 보내주기
-app.get('/api/values', function (req, res) {
-  console.log('test', '가져오기');
-  //데이테베이스에서 모든 정보 가져오기
-  // db.connection.connect();
-
-  // db.connection.query('SELECT * FROM lists', function (err, results, fields) {
-  //   if (err) {
-  //     console.log(err);
-  //   }
-  //   db.connection.end();
-  //   return res.json(results);
-  // });
-  // console.log('test', '끝');
-});
-
 // 클라이언트에서 입력한 값을 데이터베이스 lists 테이블에 넣어주기
 app.post('/api/value', function (req, res, next) {
   console.log(`test : ${req.body.value}`);
