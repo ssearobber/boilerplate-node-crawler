@@ -9,8 +9,8 @@ before_install:
   - echo "start creating an image with dockerfile"
   - docker build -t swoo0315/crawler-app -f ./backend/Dockerfile.dev ./backend
 
-script:
-  - docker run -e CI=true swoo0315/crawler-app npm run test
+# script:
+#   - docker run -e CI=true swoo0315/crawler-app npm run test
 
 after_success:
   - docker build -t swoo0315/docker-backend ./backend
