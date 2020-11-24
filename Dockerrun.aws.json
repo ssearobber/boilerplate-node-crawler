@@ -19,7 +19,7 @@
           "containerPort": 80
         }
       ],
-      "links": ["frontend", "backend"],
+      "links": ["backend"],
       "memory": 128
     }
   ]
