@@ -14,7 +14,6 @@ const mysqlDB = require('./db');
 
 //Express 서버를 생성
 const app = express();
-
 // json 형대토 오는 요청의 본문을 해석해줄수있게 등록
 app.use(bodyParser.json());
 
