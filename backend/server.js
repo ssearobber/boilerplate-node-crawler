@@ -17,35 +17,35 @@ const app = express();
 // json 형대토 오는 요청의 본문을 해석해줄수있게 등록
 app.use(bodyParser.json());
 
-const j = schedule.scheduleJob('40 30 * * * *', function () {
-  console.log('매 14분에 실행');
-  redisClient.get('number', (err, number) => {
-    console.log('number', number);
-  });
-  mysqlDB.connection.query('SELECT * FROM news', function (err, results, fields) {
-    if (err) {
-      console.log(err);
-    }
-    mysqlDB.connection.end();
-    console.log(results);
-  });
-});
+// const j = schedule.scheduleJob('40 30 * * * *', function () {
+//   console.log('매 14분에 실행');
+//   redisClient.get('number', (err, number) => {
+//     console.log('number', number);
+//   });
+//   mysqlDB.connection.query('SELECT * FROM news', function (err, results, fields) {
+//     if (err) {
+//       console.log(err);
+//     }
+//     mysqlDB.connection.end();
+//     console.log(results);
+//   });
+// });
 
-app.post('/api/value', function (req, res, next) {
-  console.log(`test : ${req.body.value}`);
+app.get('/api/hi', function (req, res, next) {
+  // console.log(`test : ${req.body.value}`);
   //데이터베이스에 값 넣어주기
-  db.connection.connect();
-
-  db.connection.query(
-    `INSERT INTO lists (value) VALUES("${req.body.value}")`,
-    function (err, results, fields) {
-      if (err) {
-        console.log(err);
-      }
-      db.connection.end();
-      return res.json({ success: true, value: req.body.value });
-    },
-  );
+  // db.connection.connect();
+  return res.json({ success: true, value: '배포성공' });
+  // db.connection.query(
+  //   `INSERT INTO lists (value) VALUES("${req.body.value}")`,
+  //   function (err, results, fields) {
+  //     if (err) {
+  //       console.log(err);
+  //     }
+  //     db.connection.end();
+  //     return res.json({ success: true, value: req.body.value });
+  //   },
+  // );
 });
 
 app.listen(5000, () => {

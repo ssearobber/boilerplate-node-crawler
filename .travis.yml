@@ -9,13 +9,13 @@ before_install:
   - echo "deplay docker hub and aws"
 
 after_success:
-  - docker build -t swoo0315/docker-backend ./backend
-  - docker build -t swoo0315/docker-nginx ./nginx
+  - docker build -t dreamsctv/docker-backend ./backend
+  - docker build -t dreamsctv/docker-nginx ./nginx
 
   - echo "$DOCKER_HUB_PASSWORD" | docker login -u "$DOCKER_HUB_ID" --password-stdin
 
-  - docker push swoo0315/docker-backend
-  - docker push swoo0315/docker-nginx
+  - docker push dreamsctv/docker-backend
+  - docker push dreamsctv/docker-nginx
 
 deploy:
   provider: elasticbeanstalk
